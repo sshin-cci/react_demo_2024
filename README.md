@@ -188,3 +188,99 @@ package.json
     ]
   }
  ```
+
+### storybook
+
+[Storybook](https://storybook.js.org/)は「UIカタログ」です。それぞれのUIコンポーネントをブラウザで手軽にチェックすることができます。
+Storybookの利点として以下の点が挙げられます
+- 手軽にUIのテストができる
+- サーバー側の準備ができていなくても先にUIを作ることができる
+
+```
+> npx storybook init --builder @storybook/builder-vite
+Need to install the following packages:
+storybook@8.1.9
+Ok to proceed? (y) y
+
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+╭──────────────────────────────────────────────────────╮
+│                                                      │
+│   Adding Storybook version 8.1.9 to your project..   │
+│                                                      │
+╰──────────────────────────────────────────────────────╯
+ • Detecting project type. ✓
+Installing dependencies...
+
+up to date, audited 314 packages in 742ms
+
+141 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+ • Adding Storybook support to your "React" app
+  ✔ Getting the correct version of 10 packages
+    Configuring Storybook ESLint plugin at .eslintrc.cjs
+  ✔ Installing Storybook dependencies
+. ✓
+Installing dependencies...
+
+
+> react_demo_2024@0.0.0 prepare
+> husky
+
+
+up to date, audited 1065 packages in 1s
+
+265 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+attention => Storybook now collects completely anonymous telemetry regarding usage.
+This information is used to shape Storybook's roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://storybook.js.org/telemetry
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Storybook was successfully installed in your project! 🎉                   │
+│   To run Storybook manually, run npm run storybook. CTRL+C to stop.          │
+│                                                                              │
+│   Wanna know more about Storybook? Check out https://storybook.js.org/       │
+│   Having trouble or want to chat? Join us at https://discord.gg/storybook/   │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Running Storybook
+
+> react_demo_2024@0.0.0 storybook
+> storybook dev -p 6006 --initial-path=/onboarding --quiet
+
+@storybook/cli v8.1.9
+
+info => Starting manager..
+info => Starting preview..
+info Using tsconfig paths for react-docgen
+11:41:41 [vite] ✨ new dependencies optimized: @storybook/blocks
+11:41:41 [vite] ✨ optimized dependencies changed. reloading
+
+```
+
+TextInput.stories.tsx
+```
+import type { Meta, StoryObj } from '@storybook/react';
+import TextInput from './TextInput';
+
+const meta =  {
+  title: 'TextInput',
+  component: TextInput,
+//   tags: ['autodocs'],
+} satisfies Meta<typeof TextInput>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Demo: Story = {}
+```
