@@ -6,7 +6,7 @@
 - [パスエイリアス](#パスエイリアス)
 - [eslint](#eslint)
 - [prettier](#prettier)
-- husky & lint-staged
+- [husky & lint-staged](#husky & lint-staged)
 - storybook
 - tailwindcss
 - shadcn/ui
@@ -17,13 +17,13 @@
 コンパイラには Babel ではなく [SWC](https://swc.rs/) を使用したいため、react-swc-ts テンプレートを使用
 
 ```
-npm create vite@latest react_demo_2024
-cd react_demo_2024
-npm install
+> npm create vite@latest react_demo_2024
+> cd react_demo_2024
+> npm install
 
-npm run dev # 開発サーバーを起動
-npm run build # プロダクションビルド
-npm run preview # プロダクションビルドしたものをローカルで確認
+> npm run dev # 開発サーバーを起動
+> npm run build # プロダクションビルド
+> npm run preview # プロダクションビルドしたものをローカルで確認
 ```
 
 ### パスエイリアス
@@ -49,7 +49,7 @@ tsconfig.json を編集し、既存の設定に baseUrl と paths を追加す�
 次に、[vite-tsconfig-paths](https://github.com/aleclarson/vite-tsconfig-paths) を使用
 
 ```
-npm install -D vite-tsconfig-paths
+> npm install -D vite-tsconfig-paths
 
 added 3 packages, and audited 163 packages in 6s
 
@@ -74,7 +74,7 @@ export default defineConfig({
 ### eslint
 
 ```
-npm install -D eslint
+> npm install -D eslint
 
 removed 116 packages, and audited 163 packages in 4s
 
@@ -83,11 +83,11 @@ removed 116 packages, and audited 163 packages in 4s
 
 found 0 vulnerabilities
 
-npx eslint --init
+> npx eslint --init
 You can also run this command directly using 'npm init @eslint/config'.
 
-> react_demo_2024@0.0.0 npx
-> create-config
+ react_demo_2024@0.0.0 npx
+ create-config
 
 ✔ How would you like to use ESLint? · problems
 ✔ What type of modules does your project use? · esm
@@ -111,10 +111,23 @@ found 0 vulnerabilities
 Successfully created .eslintrc.cjs file
 ```
 
+.eslintrc.cjs
+```
+  rules: {
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+```
+
 ### prettier
 
 ```
-npm i -D prettier
+> npm i -D prettier
 
 added 1 package, and audited 266 packages in 950ms
 
@@ -125,6 +138,7 @@ found 0 vulnerabilities
 ```
 
 prettier.config.js
+
 ```
 /** @type {import("prettier").Config} */
 const config = {
@@ -137,3 +151,40 @@ const config = {
 
 export default config;
 ```
+
+### husky & lint-staged
+
+[husky](https://github.com/typicode/husky)とは、Gitフックで任意のプログラムを実行するためのnpmライブラリです。
+[lint-staged](https://github.com/lint-staged/lint-staged)とは、Gitでステージ上の、つまり変更されたファイルに対してのみlintやformatをするためのnpmライブラリです。
+
+```
+> npm i -D husky lint-staged
+
+added 48 packages, and audited 314 packages in 5s
+
+141 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> npx husky install  既に廃止コマンド
+> npm pkg set scripts.prepare="husky install"  既に廃止コマンド
+> npx husky add .husky/pre-commit "npx lint-staged"  既に廃止コマンド
+install command is deprecated
+
+> npx husky init
+> echo "npx lint-staged --allow-empty" > .husky/pre-commit
+```
+
+package.json
+```
+  "scripts": {
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  }
+ ```
