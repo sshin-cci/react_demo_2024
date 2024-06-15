@@ -6,7 +6,7 @@
 - [パスエイリアス](#パスエイリアス)
 - [eslint](#eslint)
 - [prettier](#prettier)
-- [husky & lint-staged](#husky & lint-staged)
+- [husky & lint-staged](#husky--lint-staged)
 - storybook
 - tailwindcss
 - shadcn/ui
