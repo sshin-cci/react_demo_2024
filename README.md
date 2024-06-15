@@ -7,8 +7,8 @@
 - [eslint](#eslint)
 - [prettier](#prettier)
 - [husky & lint-staged](#husky--lint-staged)
-- storybook
-- tailwindcss
+- [storybook](#storybook)
+- [tailwindcss](#tailwindcss)
 - shadcn/ui
 - github actions
 
@@ -284,3 +284,83 @@ type Story = StoryObj<typeof meta>;
 
 export const Demo: Story = {}
 ```
+
+chromaticへ共有
+```
+> npm install --save-dev chromatic                  
+
+up to date, audited 1065 packages in 1s
+
+265 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> npm run chromatic
+
+Chromatic CLI v11.5.3
+https://www.chromatic.com/docs/cli
+
+  ✔ Authenticated with Chromatic
+    → Using project token '****************3410'
+  ✔ Retrieved git information
+    → Commit '1a3ab85' on branch 'main'; found 1 parent build
+  ✔ Collected Storybook metadata
+    → Storybook 8.1.9 for React; using the @storybook/react-vite builder (8.1.9); supported addons found: Links, Essenti
+als, Interactions
+  ✔ Initialized build
+    → Build 2 initialized
+  ✔ Storybook built in 5 seconds
+    → View build log at /Users/sshin/I/react_demo_2024/build-storybook.log
+  ✔ Publish complete in 2 seconds
+    → Uploaded 1 file (1.03 kB), skipped 75 files
+  ✔ Started build 2
+    → View build details at https://www.chromatic.com/build?appId=666d3dac3ae6f5e8d82512ea&number=2
+  ✔ Build 2 passed!
+    → Tested 1 story across 1 component; captured 1 snapshot in 5 seconds
+
+✔ Storybook published
+We found 1 component with 1 story.
+ℹ View your Storybook at https://666d3dac3ae6f5e8d82512ea-whqgokfzps.chromatic.com/
+
+✔ Build 2 passed!
+```
+
+### tailwindcss
+
+```
+> npm install -D tailwindcss postcss autoprefixer 
+
+added 32 packages, and audited 1097 packages in 7s
+
+271 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> npx tailwindcss init -p
+
+Created Tailwind CSS config file: tailwind.config.js
+Created PostCSS config file: postcss.config.js
+```
+
+tailwind.config.js
+```
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+index.css
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+### shadcn/ui
