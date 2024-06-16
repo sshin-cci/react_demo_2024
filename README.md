@@ -9,7 +9,7 @@
 - [husky & lint-staged](#husky--lint-staged)
 - [storybook](#storybook)
 - [tailwindcss](#tailwindcss)
-- [shadcn/ui](#shadcn/ui)
+- [shadcn/ui](#shadcnui)
 
 ### vite環境構築開始
 
