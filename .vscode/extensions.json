@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint", //ESLint
+    "esbenp.prettier-vscode", // Prettier
+    "ms-ceintl.vscode-language-pack-ja" // Japanese Language Pack for VSCode
+  ]
+}

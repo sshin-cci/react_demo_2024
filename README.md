@@ -9,8 +9,7 @@
 - [husky & lint-staged](#husky--lint-staged)
 - [storybook](#storybook)
 - [tailwindcss](#tailwindcss)
-- shadcn/ui
-- github actions
+- [shadcn/ui](#shadcn/ui)
 
 ### vite環境構築開始
 
@@ -112,6 +111,7 @@ Successfully created .eslintrc.cjs file
 ```
 
 .eslintrc.cjs
+
 ```
   rules: {
     'react/react-in-jsx-scope': 'off',
@@ -177,6 +177,7 @@ install command is deprecated
 ```
 
 package.json
+
 ```
   "scripts": {
     "prepare": "husky"
@@ -187,12 +188,13 @@ package.json
       "eslint --fix"
     ]
   }
- ```
+```
 
 ### storybook
 
 [Storybook](https://storybook.js.org/)は「UIカタログ」です。それぞれのUIコンポーネントをブラウザで手軽にチェックすることができます。
 Storybookの利点として以下の点が挙げられます
+
 - 手軽にUIのテストができる
 - サーバー側の準備ができていなくても先にUIを作ることができる
 
@@ -269,6 +271,7 @@ info Using tsconfig paths for react-docgen
 ```
 
 TextInput.stories.tsx
+
 ```
 import type { Meta, StoryObj } from '@storybook/react';
 import TextInput from './TextInput';
@@ -286,8 +289,9 @@ export const Demo: Story = {}
 ```
 
 chromaticへ共有
+
 ```
-> npm install --save-dev chromatic                  
+> npm install --save-dev chromatic
 
 up to date, audited 1065 packages in 1s
 
@@ -329,7 +333,7 @@ We found 1 component with 1 story.
 ### tailwindcss
 
 ```
-> npm install -D tailwindcss postcss autoprefixer 
+> npm install -D tailwindcss postcss autoprefixer
 
 added 32 packages, and audited 1097 packages in 7s
 
@@ -345,6 +349,7 @@ Created PostCSS config file: postcss.config.js
 ```
 
 tailwind.config.js
+
 ```
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -357,10 +362,59 @@ export default {
 ```
 
 index.css
+
 ```
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
 
+Unknown at rule @tailwind解消
+
+settings.json
+
+```
+{
+    "files.associations": {
+        "*.css": "tailwindcss"
+    }
+}
+```
+
 ### shadcn/ui
+
+[shadcn/ui](https://github.com/shadcn-ui/ui)とは、TailwindCSS を通じてスタイルをカスタマイズできる。[2023 JavaScript Rising Stars](https://risingstars.js.org/2023/en#section-all)ランキング1位
+
+通常のコンポーネントライブラリとは異なり、npmパッケージとして配布されていないので、npmの依存関係に影響しない。コンポーネントのコードはCLIでダウンロードする。
+
+```
+> npx shadcn-ui@latest init
+Need to install the following packages:
+shadcn-ui@0.8.0
+Ok to proceed? (y) y
+
+✔ Would you like to use TypeScript (recommended)? … no / yes
+✔ Which style would you like to use? › Default
+✔ Which color would you like to use as base color? › Slate
+✔ Where is your global CSS file? … src/index.css
+✔ Would you like to use CSS variables for colors? … no / yes
+✔ Are you using a custom tailwind prefix eg. tw-? (Leave blank if not) …
+✔ Where is your tailwind.config.js located? … tailwind.config.js
+✔ Configure the import alias for components: … @/components
+✔ Configure the import alias for utils: … @/lib/utils
+✔ Are you using React Server Components? … no / yes
+✔ Write configuration to components.json. Proceed? … yes
+
+✔ Writing components.json...
+✔ Initializing project...
+✔ Installing dependencies...
+
+Success! Project initialization completed. You may now add components.
+```
+
+@/components/ui/button.tsx
+
+```
+npx shadcn-ui@latest add button
+✔ Done.
+```
